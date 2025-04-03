@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class House extends Building implements HouseRequirements {
   private ArrayList<Student> residents; // The <Student> tells Java what kind of data we plan to store IN the ArrayList
   private boolean hasDiningRoom;
+  private boolean hasElevator;
 
   /**
    * Constructor for the House class
@@ -14,9 +15,10 @@ public class House extends Building implements HouseRequirements {
    * @param address The 'House' address
    * @param nFloors The number of floors of the 'House'
    */
-  public House(String name, String address, int nFloors, boolean hasDiningRoom) {
+  public House(String name, String address, int nFloors, boolean hasDiningRoom, boolean hasElevator) {
     super(name, address, nFloors);
     this.hasDiningRoom = hasDiningRoom;
+    this.hasElevator = hasElevator; 
     this.residents = new ArrayList<Student>();
     System.out.println("You have built a house: 🏠");
   }
@@ -28,6 +30,15 @@ public class House extends Building implements HouseRequirements {
    */
   public boolean hasDiningRoom() {
     return hasDiningRoom;
+  }
+
+  /**
+   * Check whether this 'House' has an elevator room
+   * 
+   * @return true/false 
+   */
+  public boolean hasElevator() {
+    return hasElevator;
   }
 
   /**
@@ -81,24 +92,46 @@ public class House extends Building implements HouseRequirements {
     if(this.residents.contains(s)){
       return true;
     }
-    return false;
+    else {
+      return false;
+    }
   }
 
   /**
    * Show available actions for the user
    */
   public void showOptions() {
-    super.showOptions();
-    System.out.println("\n xyz option added");
+    if (hasElevator) {
+      super.showOptions(); // Show FULL options
+    } 
+    else {
+      System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()");
+      // Does not contain option goToFloor() - Error caught in goToFloor() below if they try to.
+    }
 }  
+
+  /**
+   * Moves user to any floor of the 'House' using an elevator (if the 'House' has one)
+   * @param args
+   */
+  public void goToFloor(int floorNum) {
+    if (hasElevator) {
+      super.goToFloor(floorNum);
+    }
+    else {
+      throw new RuntimeException(this.getName() + " does NOT have an elevator. \n Try manually moving to that floor instead. ");
+    }
+  }
 
 
 
   public static void main(String[] args) {
-    House Cutter = new House("Cutter", "79 Elm St.", 3, true);
+    House Cutter = new House("Cutter", "79 Elm St.", 3, true, true);
     Student tammy = new Student("Tammy", "991472193", 2028);
     Cutter.moveIn(tammy);
     System.out.println(Cutter.isResident(tammy));
+    Cutter.showOptions();
+
 
   }
 

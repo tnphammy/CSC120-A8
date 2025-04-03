@@ -66,7 +66,7 @@ public class Cafe extends Building implements CafeRequirements {
     /**
      * Show available actions for the user
      */
-    public void showOptions() {
+    public void showOptions() { // Overriding from Building
         System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee(nCoffeeOunces, nSugarPackets, nCreams)\n + restock(nCoffeeOunces, nSugarPackets, nCreams, nCups)");
     }
 
@@ -74,7 +74,7 @@ public class Cafe extends Building implements CafeRequirements {
         Cafe campusCenterCafe = new Cafe("Campus Center Café", "100 Elm St", 2, 20, 20, 20, 20);
         campusCenterCafe.sellCoffee(12, 3, 3);
         campusCenterCafe.sellCoffee(12, 0, 4);
-        campusCenterCafe.showOptions();;
+        campusCenterCafe.showOptions();
     }
     
 }
