@@ -66,7 +66,7 @@ public class Cafe extends Building implements CafeRequirements {
     /**
      * Show available actions for the user
      */
-    public void showOptions() { // Overriding from Building
+    public void showOptions() { // Overriding from Building because the user cannot move up or down.
         System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee(nCoffeeOunces, nSugarPackets, nCreams)\n + restock(nCoffeeOunces, nSugarPackets, nCreams, nCups)");
     }
 

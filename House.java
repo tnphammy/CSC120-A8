@@ -61,8 +61,9 @@ public class House extends Building implements HouseRequirements {
       String message = s.getName() + "already lives here.";
       throw new RuntimeException(message);
     } 
-    this.residents.add(s);
-
+    else {
+      this.residents.add(s);
+    }
   }
 
   /**
@@ -112,14 +113,15 @@ public class House extends Building implements HouseRequirements {
 
   /**
    * Moves user to any floor of the 'House' using an elevator (if the 'House' has one)
-   * @param args
+   * 
+   * @param floorNum The floor number the user wants to go to.
    */
   public void goToFloor(int floorNum) {
     if (hasElevator) {
       super.goToFloor(floorNum);
     }
     else {
-      throw new RuntimeException(this.getName() + " does NOT have an elevator. \n Try manually moving to that floor instead. ");
+      throw new RuntimeException(this.getName() + " House does NOT have an elevator. \n Try manually moving to that floor instead. ");
     }
   }
 

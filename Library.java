@@ -3,6 +3,7 @@ import java.util.Hashtable;
 /* This is a stub for the Library class */
 public class Library extends Building implements LibraryRequirements{
   private Hashtable<String, Boolean> collection;
+  private boolean hasElevator;
 
     /**
      * Constructor for the Library class
@@ -13,9 +14,10 @@ public class Library extends Building implements LibraryRequirements{
      * @param address The 'Library' address
      * @param nFloors The number of floors of the 'Library'
      */
-    public Library(String name, String address, int nFloors) {
+    public Library(String name, String address, int nFloors, boolean hasElevator) {
       super(name, address, nFloors);
-      this.collection = new Hashtable<String, Boolean>(); // I'm not sure yet but okay
+      this.collection = new Hashtable<String, Boolean>(); 
+      this.hasElevator = hasElevator;
       System.out.println("You have built a library: 📖");
     }
 
@@ -126,16 +128,36 @@ public class Library extends Building implements LibraryRequirements{
       System.out.println(this.collection.toString());
     }
 
-    /**
-     * Show available options for the user at this point.
-     */
-    public void showOptions() {
-      super.showOptions();
-      // Everything is kept since all libraries have an elevator.
+  /**
+   * Show available actions for the user
+   */
+  public void showOptions() {
+    if (hasElevator) {
+      super.showOptions(); // Show FULL options
+    } 
+    else {
+      System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()");
+      // Does not contain option goToFloor() - Error caught in goToFloor() below if they try to.
     }
+  }  
+
+  /**
+   * Moves user to any floor of the 'Library' using an elevator (if the 'House' has one)
+   * 
+   * @param floorNum The floor number the user wants to go to.
+   */
+  public void goToFloor(int floorNum) {
+    if (hasElevator) {
+      super.goToFloor(floorNum);
+    }
+    else {
+      throw new RuntimeException(this.getName() + " Library does NOT have an elevator. \n Try manually moving to that floor instead.");
+    }
+  }
+
 
     public static void main(String[] args) {
-      Library neilson = new Library("Neilson", "7 Neilson Drive", 4);
+      Library neilson = new Library("Neilson", "7 Neilson Drive", 4, true);
       String wow = new String("World of Wonders");
       neilson.addTitle("Gut Check");
       neilson.addTitle(wow);
