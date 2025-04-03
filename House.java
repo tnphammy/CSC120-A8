@@ -84,6 +84,14 @@ public class House extends Building implements HouseRequirements {
     return false;
   }
 
+  /**
+   * Show available actions for the user
+   */
+  public void showOptions() {
+    super.showOptions();
+    System.out.println("\n xyz option added");
+}  
+
 
 
   public static void main(String[] args) {

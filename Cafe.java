@@ -62,11 +62,19 @@ public class Cafe extends Building implements CafeRequirements {
         this.nCreams = nCreams;
         this.nCups = nCups;
     }
+
+    /**
+     * Show available actions for the user
+     */
+    public void showOptions() {
+        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee(nCoffeeOunces, nSugarPackets, nCreams)\n + restock(nCoffeeOunces, nSugarPackets, nCreams, nCups)");
+    }
+
     public static void main(String[] args) {
         Cafe campusCenterCafe = new Cafe("Campus Center Café", "100 Elm St", 2, 20, 20, 20, 20);
         campusCenterCafe.sellCoffee(12, 3, 3);
         campusCenterCafe.sellCoffee(12, 0, 4);
-        campusCenterCafe.sellCoffee(20, 5, 6);
+        campusCenterCafe.showOptions();;
     }
     
 }
