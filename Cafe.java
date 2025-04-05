@@ -44,23 +44,29 @@ public class Cafe extends Building implements CafeRequirements {
             restock(size, nSugarPackets, nCreams, nCups); // Restock if any inventory is insufficient
             System.out.println("Restocking... Please hold!");
         }
-            this.nCoffeeOunces =- size;
-            this.nSugarPackets =- nSugarPackets;
-            this.nCreams =- nCreams;
-            this.nCups -= 1; // Since this is one order => ONE cup is needed
+            this.nCoffeeOunces -= size;
+            this.nSugarPackets -= nSugarPackets;
+            this.nCreams -= nCreams;
+            this.nCups -= 1; 
             System.out.println("One cup sold! :)");
     
     }
 
+    /**
+     * Sell one coffee by order (name, e.g: "Americano").
+     * Decreases inventory depending on order.
+     * 
+     * @param order The coffee style 
+     */
     public void sellCoffee(Coffee order) {
-        if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > nSugarPackets) || (order.getCreams() > nCreams) || (this.nCups < 1)) {
+        if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > this.nSugarPackets) || (order.getCreams() > this.nCreams) || (this.nCups < 1)) {
             restock(order.getOunces(), order.getSugar(), order.getCreams(), 10); // Restock if any inventory is insufficient (hardcoding get 10 more cups)
             System.out.println("Restocking... Please hold!");
         }
-        this.nCoffeeOunces =- order.getOunces();
-        this.nSugarPackets =- order.getSugar();
-        this.nCreams =- order.getCreams();
-        this.nCups -= 1; // Since this is one order => ONE cup is needed
+        this.nCoffeeOunces -= order.getOunces();
+        this.nSugarPackets -= order.getSugar();
+        this.nCreams -= order.getCreams();
+        this.nCups -= 1; 
         System.out.println("One "+ order.getName()+ " sold! :)");        
 
     }
@@ -76,15 +82,34 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffees(int size, int nSugarPackets, int nCreams, int nCups) {
         if ((this.nCoffeeOunces < size) || (this.nSugarPackets < nSugarPackets) || (this.nCreams < nCreams) || (this.nCups < 1)) {
-            restock(size, nSugarPackets, nCreams, nCups); // Restock if any inventory is insufficient
+            restock(size, nSugarPackets, nCreams, 10); // Restock if any inventory is insufficient (hardcoding 10 cups)
             System.out.println("Restocking... Please hold!");
         }
-            this.nCoffeeOunces =- size;
-            this.nSugarPackets =- nSugarPackets;
-            this.nCreams =- nCreams;
-            this.nCups -= nCups; // Since this is one order => ONE cup is needed
+            this.nCoffeeOunces -= size;
+            this.nSugarPackets -= nSugarPackets;
+            this.nCreams -= nCreams;
+            this.nCups -= nCups; 
             System.out.println(nCups + " cups sold! :)");
             
+    }
+
+    /**
+     * Sell multiple coffee cups by order (name, e.g: "Americano").
+     * Decreases inventory depending on order.
+     * 
+     * @param order The coffee style 
+     */
+    public void sellCoffees(Coffee order, int numCups) {
+        if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > this.nSugarPackets) || (order.getCreams() > this.nCreams) || (numCups > this.nCups)) {
+            restock(order.getOunces(), order.getSugar(), order.getCreams(), 10); // Restock if any inventory is insufficient (hardcoding get 10 more cups)
+            System.out.println("Restocking... Please hold!");
+        }
+        this.nCoffeeOunces -= order.getOunces();
+        this.nSugarPackets -= order.getSugar();
+        this.nCreams -= order.getCreams();
+        this.nCups -= numCups; 
+        System.out.println(numCups+ " " + order.getName()+ "'s sold! :)");        
+
     }
 
     /**
@@ -106,7 +131,7 @@ public class Cafe extends Building implements CafeRequirements {
      * Show available actions for the user
      */
     public void showOptions() { // Overriding from Building because the user cannot move up or down.
-        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee(nCoffeeOunces, nSugarPackets, nCreams)\n + restock(nCoffeeOunces, nSugarPackets, nCreams, nCups)");
+        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()\n + sellCoffees()\n + restock(nCoffeeOunces, nSugarPackets, nCreams, nCups)\n + showMenu()");
     }
 
     /**
@@ -117,20 +142,27 @@ public class Cafe extends Building implements CafeRequirements {
         //for(int i = 1; i <= menu.size(); i++)               
         //    System.out.println(getName());
         //} 
-        System.out.println("Our menu includes: " + menu.toString());
+        System.out.println("The menu includes: " + menu.toString());
     }
 
     public static void main(String[] args) {
         Cafe campusCenterCafe = new Cafe("Campus Center Café", "100 Elm St", 2, 20, 20, 20, 20);
         campusCenterCafe.sellCoffee(12, 3, 3);
-        campusCenterCafe.showOptions();
+        //campusCenterCafe.restock(100, 100, 100, 100);
+    
         Coffee americano = new Coffee("Americano", 3, 1, 0);
         Coffee tammietti = new Coffee("Tammietti", 3, 5, 1);
         campusCenterCafe.menu.add(americano);
         campusCenterCafe.menu.add(tammietti);
+
         campusCenterCafe.sellCoffee(americano);
         campusCenterCafe.sellCoffee(tammietti);
-        campusCenterCafe.showMenu();
+
+        campusCenterCafe.sellCoffees(americano, 3);
+
+
+        //campusCenterCafe.showMenu();
+        //campusCenterCafe.showOptions();
     }
     
 }
