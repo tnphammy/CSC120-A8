@@ -7,7 +7,7 @@ public class Cafe extends Building implements CafeRequirements {
     private int nSugarPackets; // The number of sugar packets remaining in inventory
     private int nCreams; // The number of "splashes" of cream remaining in inventory
     private int nCups; // The number of cups remaining in inventory
-    private ArrayList<Coffee> menu = new ArrayList<>();
+    protected ArrayList<Coffee> menu = new ArrayList<>(); // List of all available coffee orders (named)
 
     /**
      * Constructor for the 'Cafe' class.
@@ -145,24 +145,30 @@ public class Cafe extends Building implements CafeRequirements {
         System.out.println("The menu includes: " + menu.toString());
     }
 
+    public void goToFloor(int floorNum) {
+        if (this.activeFloor == -1) {
+            throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+        }
+        throw new RuntimeException("You are not permitted to move beyond this floor. ");
+    }
+
+    public void goUp() {
+        if (this.activeFloor == -1) {
+            throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+        }
+        throw new RuntimeException("You are not permitted to move beyond this floor. ");
+    }
+
+    public void goDown() {
+        if (this.activeFloor == -1) {
+            throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+        }
+        throw new RuntimeException("You are not permitted to move beyond this floor. ");
+    }
+
     public static void main(String[] args) {
         Cafe campusCenterCafe = new Cafe("Campus Center Café", "100 Elm St", 2, 20, 20, 20, 20);
         campusCenterCafe.sellCoffee(12, 3, 3);
-        //campusCenterCafe.restock(100, 100, 100, 100);
-    
-        Coffee americano = new Coffee("Americano", 3, 1, 0);
-        Coffee tammietti = new Coffee("Tammietti", 3, 5, 1);
-        campusCenterCafe.menu.add(americano);
-        campusCenterCafe.menu.add(tammietti);
-
-        campusCenterCafe.sellCoffee(americano);
-        campusCenterCafe.sellCoffee(tammietti);
-
-        campusCenterCafe.sellCoffees(americano, 3);
-
-
-        //campusCenterCafe.showMenu();
-        //campusCenterCafe.showOptions();
     }
     
 }
