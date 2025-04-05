@@ -21,6 +21,16 @@ public class Library extends Building implements LibraryRequirements{
       System.out.println("You have built a library: 📖");
     }
 
+    /* Default constructor */
+    public Library() {
+      this("<Name Unknown>", "<Address Unknown>", 3, true);
+    }
+
+    /* Overloaded constructor with nFloors and hasElevator */
+    public Library(int nFloor, boolean hasElevator) {
+      this("<Name Unknown", "<Address Unknown>", nFloor, hasElevator);
+    }
+
     /**
      * Add a title to the collection
      * 

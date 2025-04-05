@@ -23,6 +23,18 @@ public class House extends Building implements HouseRequirements {
     System.out.println("You have built a house: 🏠");
   }
 
+  /* Default constructor 
+  * (no elevator/dining hall)
+  */
+  public House() {
+    this("<Name Unknown>", "<Address Unknown>", 1, false, false);
+  }
+
+  /* Overloaded constructor with nFloor, hasElevator, and hasDiningRoom only */
+  public House(int nFloors, boolean hasElevator, boolean hasDiningRoom) {
+    this("<Name Unknown>", "Address Unknown", nFloors, hasElevator, hasDiningRoom);
+  }
+
   /**
    * Check whether this 'House' has a dining room
    * 
