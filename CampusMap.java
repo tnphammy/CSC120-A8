@@ -52,7 +52,8 @@ public class CampusMap {
         myMap.addBuilding(new Building("McConnell Hall", "2 Tyler Ct", 4));
 
         // Libraries
-        myMap.addBuilding(new Library("Neilson", "7 Neilson Drive", 4, true));
+        Library neilson = new Library("Neilson", "7 Neilson Drive", 4, true);
+        myMap.addBuilding(neilson);
         myMap.addBuilding(new Library("Alumnae Gym", "83 Green Street", 3, true));
         myMap.addBuilding(new Library("Josten Performing Arts Library" , "122 Green Street",3 , true));
         myMap.addBuilding(new Library("Hillyer Art Library", "20 Elm Street", 2, false));
@@ -65,7 +66,18 @@ public class CampusMap {
         myMap.addBuilding(compassCafe);
         System.out.println(myMap);
 
-        // Actions (I overloaded methods in Cafe.java only, so here it is)
+        // Houses
+        House cutterHouse = new House("Cutter", "79 Elm St.", 3, true, true);
+        House northropHouse = new House(5, true, false);
+        myMap.addBuilding(cutterHouse);
+        myMap.addBuilding(northropHouse);
+
+        // Actions 
+
+        // (1) Cafe
+        System.out.println("-------------------");
+        System.out.println("   CAFE TESTING");
+        System.out.println("-------------------");
         campusCenterCafe.sellCoffee(12, 3, 3); // Original method sellCoffee()
     
         Coffee americano = new Coffee("Americano", 3, 1, 0);
@@ -82,8 +94,57 @@ public class CampusMap {
         campusCenterCafe.showMenu();
         campusCenterCafe.showOptions(); 
         campusCenterCafe.enter();
-        campusCenterCafe.goUp();
+        //campusCenterCafe.goUp(); // Returns a RuntimeException
 
+        System.out.println("-------------------");
+        System.out.println("CAFE TESTING - DONE");
+        System.out.println("-------------------");
+
+        // (2) Library
+        System.out.println("-------------------");
+        System.out.println("  LIBRARY TESTING");
+        System.out.println("-------------------");
+        
+        neilson.addTitle("World of Wonders"); // Original method
+
+        ArrayList<String> bookList = new ArrayList<>();
+        
+        bookList.add("Book1");
+        bookList.add("Book2");
+  
+        neilson.addTitle(bookList); // Overloaded method (can add multiple books at once)
+        neilson.printCollection();
+  
+        neilson.checkOut(bookList); // Overloaded method (can check out multiple books at once)
+        neilson.printCollection();
+
+        System.out.println("-------------------------");
+        System.out.println("LIBRARY TESTING - DONE");
+        System.out.println("-------------------------"); 
+  
+        // (3) House
+        System.out.println("-------------------");
+        System.out.println("  HOUSE TESTING");
+        System.out.println("-------------------");
+
+        Student ymmat = new Student("ymmat", "99xxxxxxx", 2029);
+        cutterHouse.moveIn(ymmat); // Original method
+
+        ArrayList<Student> classOf28 = new ArrayList<Student>();
+        Student anak = new Student("Anak", 2028);
+        Student aifos = new Student("Aifos", 2028);
+        classOf28.add(anak);
+        classOf28.add(aifos);
+    
+        cutterHouse.moveIn(classOf28); // Overloaded method (can move in multiple students)
+        System.out.println(cutterHouse.getName() + " House has " + cutterHouse.nResidents() + " student residents."); // Output: 3
+
+        cutterHouse.moveOut(classOf28); // Overloaded method (can move out multiple students)
+        System.out.println(cutterHouse.getName() + " House has " + cutterHouse.nResidents() + " student residents.");; // Output 1
+
+        System.out.println("-------------------------");
+        System.out.println("  HOUSE TESTING - DONE");
+        System.out.println("-------------------------"); 
     }
     
 }

@@ -14,6 +14,13 @@ public class Student {
         this.classes = new ArrayList<>(); 
     }
 
+    /* Overloaded constructor with name and classYear only */
+    public Student(String name, int classYear) {
+        this(name, "99XXXXXXX", classYear);
+        this.name = name;
+        this.classYear = classYear;
+    }
+
     public String getName() {
         return this.name; 
     }

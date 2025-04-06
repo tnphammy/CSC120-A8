@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /* This is a stub for the Library class */
@@ -26,6 +27,13 @@ public class Library extends Building implements LibraryRequirements{
       this("<Name Unknown>", "<Address Unknown>", 3, true);
     }
 
+    /* Overloaded constructor with name and address */
+    public Library(String name, String address) {
+      this(name, address, 3, true); // Call full constructor with hard-coded # floors and elevator
+      this.name = name;
+      this.address = address;
+    }
+
     /* Overloaded constructor with nFloors and hasElevator */
     public Library(int nFloor, boolean hasElevator) {
       this("<Name Unknown", "<Address Unknown>", nFloor, hasElevator);
@@ -44,6 +52,22 @@ public class Library extends Building implements LibraryRequirements{
         this.collection.put(title, true);
       }
 
+    }
+
+    /**
+     * Add multiple titles to the collection
+     * 
+     * @param bookList List of book names to be added
+     */
+    public void addTitle(ArrayList<String> bookList) {
+      for (int i = 0; i <= (bookList.size()-1); i++) {
+        if(containsTitle(bookList.get(i)) == true ){ // Get the book title at the i index
+          throw new RuntimeException(bookList.get(i) +" is already in the collection. Try again with a new book.");
+        }
+        else {
+          this.collection.put(bookList.get(i), true);
+        }
+      }
     }
   
     /**
@@ -77,6 +101,26 @@ public class Library extends Building implements LibraryRequirements{
       }
       else {
         throw new RuntimeException(title + " is NOT within the collection, and thus cannot be checked out. Please try again with a new book.");
+      }
+    }
+
+    /**
+     * Check multiple books from library collection
+     * 
+     * @param bookList List of book names to be checked out
+     */
+    public void checkOut(ArrayList<String> bookList) {
+      for(int i = 0; i <= (bookList.size()- 1); i++) {
+        if(containsTitle(bookList.get(i))) {
+          if(!isAvailable(bookList.get(i))) {
+            throw new RuntimeException(bookList.get(i) + " has already been checked out by someone else. Please come back another time.");
+          }
+          this.collection.replace(bookList.get(i), false);
+          System.out.println(bookList.get(i) + " is checked out. Have fun reading!");
+        }
+        else {
+          throw new RuntimeException(bookList.get(i) + " is NOT within the collection, and thus cannot be checked out. Please try again with a new book.");
+        }
       }
     }
 
@@ -147,7 +191,7 @@ public class Library extends Building implements LibraryRequirements{
     } 
     else {
       System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()");
-      // Does not contain option goToFloor() - Error caught in goToFloor() below if they try to.
+      // Does not contain option goToFloor() - Runtime Exception in goToFloor() below if they try to.
     }
   }  
 
@@ -171,11 +215,19 @@ public class Library extends Building implements LibraryRequirements{
       String wow = new String("World of Wonders");
       neilson.addTitle("Gut Check");
       neilson.addTitle(wow);
-      System.out.println(neilson.containsTitle(wow));
-      neilson.printCollection();
-      System.out.println(neilson.isAvailable(wow));
       neilson.checkOut(wow);
-      neilson.isAvailable(wow);
+      
+      ArrayList<String> bookList = new ArrayList<>();
+      bookList.add("Book1");
+      bookList.add("Book2");
+
+      neilson.addTitle(bookList);
+      neilson.printCollection();
+
+      neilson.checkOut(bookList);
+      neilson.printCollection();
+
+      
     }
   
   }

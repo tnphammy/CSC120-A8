@@ -79,6 +79,23 @@ public class House extends Building implements HouseRequirements {
   }
 
   /**
+   * Move in multiple students
+   * 
+   * @param students The students' names
+   */
+  public void moveIn(ArrayList<Student> students) {
+    for(int i = 0; i <= (students.size() -1 ); i++) { // Loop through each student
+      if(this.residents.contains(students.get(i))) { // Student s is a resident of this 'House'=> CANNOT be added.
+      String message = students.get(i).getName() + "already lives here.";
+      throw new RuntimeException(message);
+      } 
+      else {
+      this.residents.add(students.get(i));
+      }
+    }
+  }
+
+  /**
    * Move out a student
    * 
    * @param s The student's name
@@ -92,6 +109,26 @@ public class House extends Building implements HouseRequirements {
     else {
       String message = s.getName() + "does NOT live here";
       throw new RuntimeException(message);
+    }
+  }
+
+  /**
+   * Move out students
+   * 
+   * @param students The student's name
+   * @return The students' name (who have now moved out)
+   */
+  public void moveOut(ArrayList<Student> students) {
+    for(int i = 0; i <= (students.size() - 1); i++) {
+      if(this.residents.contains(students.get(i))) { // Student is resident of 'House' => CAN be removed.
+      this.residents.remove(students.get(i));
+      String message = students.get(i).getName() + " has moved out successfully";
+      System.out.println(message);
+    }
+    else {
+      String message = students.get(i).getName() + "does NOT live here";
+      throw new RuntimeException(message);
+    }    
     }
   }
 
@@ -119,7 +156,7 @@ public class House extends Building implements HouseRequirements {
     } 
     else {
       System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()");
-      // Does not contain option goToFloor() - Error caught in goToFloor() below if they try to.
+      // Does not contain option goToFloor() - Runtime Exception in goToFloor() below if they try to.
     }
 }  
 
@@ -143,8 +180,27 @@ public class House extends Building implements HouseRequirements {
     House Cutter = new House("Cutter", "79 Elm St.", 3, true, true);
     Student tammy = new Student("Tammy", "991472193", 2028);
     Cutter.moveIn(tammy);
-    System.out.println(Cutter.isResident(tammy));
-    Cutter.showOptions();
+    // Cutter.enter();
+    // Cutter.goToFloor(3);
+
+    // House northrop = new House(5, true, false);
+    // northrop.enter();
+    // northrop.goToFloor(5);
+    ArrayList<Student> classOf28 = new ArrayList<Student>();
+    Student anak = new Student("Anak", 2028);
+    Student aifos = new Student("Aifos", 2028);
+    classOf28.add(anak);
+    classOf28.add(aifos);
+
+    Cutter.moveIn(classOf28);
+
+    System.out.println(Cutter.nResidents());
+
+    Cutter.moveOut(classOf28);
+    System.out.println(Cutter.nResidents());
+    
+
+    
 
 
   }
