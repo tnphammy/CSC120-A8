@@ -88,7 +88,7 @@ public class CampusMap {
         campusCenterCafe.sellCoffee(americano); // Overloaded method (can sell coffee by order)
         campusCenterCafe.sellCoffee(espresso);
 
-        campusCenterCafe.sellCoffees(americano, 3); // Overloaded method (can sell specified quantity of coffees by order)
+        campusCenterCafe.sellCoffee(americano, 3); // Overloaded method (can sell specified quantity of coffees by order)
 
 
         campusCenterCafe.showMenu();

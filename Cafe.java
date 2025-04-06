@@ -80,7 +80,7 @@ public class Cafe extends Building implements CafeRequirements {
      * @param nSugarPackets The number of sugar packets needed (per cup) 
      * @param nCreams the number of cream pods needed (per cup)
      */
-    public void sellCoffees(int size, int nSugarPackets, int nCreams, int nCups) {
+    public void sellCoffee(int size, int nSugarPackets, int nCreams, int nCups) {
         if ((this.nCoffeeOunces < size) || (this.nSugarPackets < nSugarPackets) || (this.nCreams < nCreams) || (this.nCups < 1)) {
             restock(size, nSugarPackets, nCreams, 10); // Restock if any inventory is insufficient (hardcoding 10 cups)
             System.out.println("Restocking... Please hold!");
@@ -99,7 +99,7 @@ public class Cafe extends Building implements CafeRequirements {
      * 
      * @param order The coffee style 
      */
-    public void sellCoffees(Coffee order, int numCups) {
+    public void sellCoffee(Coffee order, int numCups) {
         if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > this.nSugarPackets) || (order.getCreams() > this.nCreams) || (numCups > this.nCups)) {
             restock(order.getOunces(), order.getSugar(), order.getCreams(), 10); // Restock if any inventory is insufficient (hardcoding get 10 more cups)
             System.out.println("Restocking... Please hold!");
