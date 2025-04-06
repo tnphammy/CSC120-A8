@@ -7,8 +7,8 @@ Use this file to record your reflection on this assignment.
         - (Not within assignment) Student.java: I wanted to do this quickly to skip having to write studentID number and just fill out name and classYear.
 
     * Methods (in Cafe.java):
-        - sellCoffee(): Overloaded another one that could take a named order, like an Americano.
-        - sellCoffees(): Overloaded one that could take multiple (specified) number of coffee orders by the specific requirements, and another that could take a named order in specified quantities, like an Americano.
+        - sellCoffee(): Overloaded one that could take a named order, like an Americano.
+        - sellCoffee(): Overloaded another one that could take multiple (specified) number of coffee orders by the specific requirements, and another that could take a named order in specified quantities, like an Americano.
 
     * Methods (in Library.java):
         - addTitle(): Overloaded so that the library can add multiple books at once. I could have done that with removeTitle(), but I chose not to, because I think removing books by large quantities is not desirable, and should be done carefully.
@@ -17,7 +17,7 @@ Use this file to record your reflection on this assignment.
     * Methods (in House.java):
         - moveIn(): Overloaded so that multiple students can move in a house at once. I did this because for every academic year, many first-years move in at once. This would quicken the process instead of having to add every single student.
         - moveOut(): Overloaded so that multiple students can move out a house at once. Every year, a class year graduates. Also, there are study abroad students that might all move out a house. This makes it faster!
-        
+
 - What worked, what didn't, what advice would you give someone taking this course in the future?
     I used much less ChatGPT this time around, and have been working on this project for days.
 
