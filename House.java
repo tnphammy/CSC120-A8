@@ -14,6 +14,8 @@ public class House extends Building implements HouseRequirements {
    * @param name The name of the 'House'
    * @param address The 'House' address
    * @param nFloors The number of floors of the 'House'
+   * @param hasDiningRoom True/False whether a 'House' has a dining room
+   * @param hasElevator True/False whether a 'House' has an elevator
    */
   public House(String name, String address, int nFloors, boolean hasDiningRoom, boolean hasElevator) {
     super(name, address, nFloors);
@@ -177,11 +179,11 @@ public class House extends Building implements HouseRequirements {
 
 
   public static void main(String[] args) {
-    House Cutter = new House("Cutter", "79 Elm St.", 3, true, true);
+    House cutter = new House("Cutter", "79 Elm St.", 3, true, true);
     Student tammy = new Student("Tammy", "991472193", 2028);
-    Cutter.moveIn(tammy);
-    // Cutter.enter();
-    // Cutter.goToFloor(3);
+    cutter.moveIn(tammy);
+    // cutter.enter();
+    // cutter.goToFloor(3);
 
     // House northrop = new House(5, true, false);
     // northrop.enter();
@@ -192,12 +194,12 @@ public class House extends Building implements HouseRequirements {
     classOf28.add(anak);
     classOf28.add(aifos);
 
-    Cutter.moveIn(classOf28);
+    cutter.moveIn(classOf28);
 
-    System.out.println(Cutter.nResidents());
+    System.out.println(cutter.nResidents());
 
-    Cutter.moveOut(classOf28);
-    System.out.println(Cutter.nResidents());
+    cutter.moveOut(classOf28);
+    System.out.println(cutter.nResidents());
     
 
     
