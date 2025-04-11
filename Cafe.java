@@ -41,7 +41,7 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffee(int size, int nSugarPackets, int nCreams) {
         if ((this.nCoffeeOunces < size) || (this.nSugarPackets < nSugarPackets) || (this.nCreams < nCreams) || (this.nCups < 1)) {
-            restock(size, nSugarPackets, nCreams, nCups); // Restock if any inventory is insufficient
+            restock(50, 50, 50, 50); // Restock if any inventory is insufficient (Hardcoded 50 of everything)
             System.out.println("Restocking... Please hold!");
         }
             this.nCoffeeOunces -= size;
@@ -60,7 +60,7 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffee(Coffee order) {
         if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > this.nSugarPackets) || (order.getCreams() > this.nCreams) || (this.nCups < 1)) {
-            restock(order.getOunces(), order.getSugar(), order.getCreams(), 10); // Restock if any inventory is insufficient (hardcoding get 10 more cups)
+            restock(50, 50, 50, 50); // Restock if any inventory is insufficient (Hardcoded 50 of everything)
             System.out.println("Restocking... Please hold!");
         }
         this.nCoffeeOunces -= order.getOunces();
@@ -82,7 +82,7 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffee(int size, int nSugarPackets, int nCreams, int nCups) {
         if ((this.nCoffeeOunces < size) || (this.nSugarPackets < nSugarPackets) || (this.nCreams < nCreams) || (this.nCups < 1)) {
-            restock(size, nSugarPackets, nCreams, 10); // Restock if any inventory is insufficient (hardcoding 10 cups)
+            restock(50, 50, 50, 50); // Restock if any inventory is insufficient (Hardcoded 50 of everything)
             System.out.println("Restocking... Please hold!");
         }
             this.nCoffeeOunces -= size;
@@ -101,7 +101,7 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffee(Coffee order, int numCups) {
         if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > this.nSugarPackets) || (order.getCreams() > this.nCreams) || (numCups > this.nCups)) {
-            restock(order.getOunces(), order.getSugar(), order.getCreams(), 10); // Restock if any inventory is insufficient (hardcoding get 10 more cups)
+            restock(50, 50, 50, 50); // Restock if any inventory is insufficient (Hardcoded 50 of everything)
             System.out.println("Restocking... Please hold!");
         }
         this.nCoffeeOunces -= order.getOunces();
