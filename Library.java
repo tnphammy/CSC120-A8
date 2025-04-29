@@ -131,8 +131,11 @@ public class Library extends Building implements LibraryRequirements{
      */
     public void returnBook(String title) {
       if(containsTitle(title)) {
-        if(isAvailable(title) == false) { // Check if the book was borrowed
-          this.collection.replace(title,true); // Then return the book
+        // Check if the book was borrowed
+        
+        if(isAvailable(title) == false) { 
+          // Then return the book
+          this.collection.replace(title,true); 
         }
         else {
           throw new RuntimeException(title + " was NOT previously checked out, and thus cannot be returned.");

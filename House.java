@@ -86,13 +86,16 @@ public class House extends Building implements HouseRequirements {
    * @param students The students' names
    */
   public void moveIn(ArrayList<Student> students) {
-    for(int i = 0; i <= (students.size() -1 ); i++) { // Loop through each student
-      if(this.residents.contains(students.get(i))) { // Student s is a resident of this 'House'=> CANNOT be added.
-      String message = students.get(i).getName() + "already lives here.";
-      throw new RuntimeException(message);
+    for(int i = 0; i <= (students.size() -1 ); i++) { 
+      // Loop through each student
+
+      if(this.residents.contains(students.get(i))) { 
+        // Student s is already resident of this 'House'=> CANNOT be added.
+        String message = students.get(i).getName() + "already lives here.";
+        throw new RuntimeException(message);
       } 
       else {
-      this.residents.add(students.get(i));
+        this.residents.add(students.get(i));
       }
     }
   }
@@ -104,7 +107,8 @@ public class House extends Building implements HouseRequirements {
    * @return The student's name (who has now moved out)
    */
   public Student moveOut(Student s) {
-    if(this.residents.contains(s)) { // Student is resident of 'House' => CAN be removed.
+    if(this.residents.contains(s)) { 
+      // Student is resident of 'House' => CAN be removed.
       this.residents.remove(s);
       return s;
     }
@@ -122,10 +126,11 @@ public class House extends Building implements HouseRequirements {
    */
   public void moveOut(ArrayList<Student> students) {
     for(int i = 0; i <= (students.size() - 1); i++) {
-      if(this.residents.contains(students.get(i))) { // Student is resident of 'House' => CAN be removed.
-      this.residents.remove(students.get(i));
-      String message = students.get(i).getName() + " has moved out successfully";
-      System.out.println(message);
+      if(this.residents.contains(students.get(i))) { 
+        // Student is resident of 'House' => CAN be removed.
+        this.residents.remove(students.get(i));
+        String message = students.get(i).getName() + " has moved out successfully";
+        System.out.println(message);
     }
     else {
       String message = students.get(i).getName() + "does NOT live here";

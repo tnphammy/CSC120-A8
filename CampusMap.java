@@ -31,6 +31,7 @@ public class CampusMap {
         return b;
     }
 
+    /** to String for printing */
     public String toString() {
         String mapString = "DIRECTORY of BUILDINGS";
 

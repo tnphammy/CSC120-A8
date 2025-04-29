@@ -60,7 +60,8 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffee(Coffee order) {
         if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > this.nSugarPackets) || (order.getCreams() > this.nCreams) || (this.nCups < 1)) {
-            restock(50, 50, 50, 50); // Restock if any inventory is insufficient (Hardcoded 50 of everything)
+            // Restock if any inventory is insufficient (Hardcoded 50 of everything)
+            restock(50, 50, 50, 50); 
             System.out.println("Restocking... Please hold!");
         }
         this.nCoffeeOunces -= order.getOunces();
@@ -82,7 +83,8 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffee(int size, int nSugarPackets, int nCreams, int nCups) {
         if ((this.nCoffeeOunces < size) || (this.nSugarPackets < nSugarPackets) || (this.nCreams < nCreams) || (this.nCups < 1)) {
-            restock(50, 50, 50, 50); // Restock if any inventory is insufficient (Hardcoded 50 of everything)
+            // Restock if any inventory is insufficient (Hardcoded 50 of everything)
+            restock(50, 50, 50, 50); 
             System.out.println("Restocking... Please hold!");
         }
             this.nCoffeeOunces -= size;
@@ -101,8 +103,9 @@ public class Cafe extends Building implements CafeRequirements {
      */
     public void sellCoffee(Coffee order, int numCups) {
         if ((order.getOunces() > this.nCoffeeOunces) || (order.getSugar() > this.nSugarPackets) || (order.getCreams() > this.nCreams) || (numCups > this.nCups)) {
-            restock(50, 50, 50, 50); // Restock if any inventory is insufficient (Hardcoded 50 of everything)
+            // Restock if any inventory is insufficient (Hardcoded 50 of everything)
             System.out.println("Restocking... Please hold!");
+            restock(50, 50, 50, 50); 
         }
         this.nCoffeeOunces -= order.getOunces();
         this.nSugarPackets -= order.getSugar();
@@ -130,7 +133,8 @@ public class Cafe extends Building implements CafeRequirements {
     /**
      * Show available actions for the user
      */
-    public void showOptions() { // Overriding from Building because the user cannot move up or down.
+    public void showOptions() { 
+        // Overriding from Building because the user cannot move up or down.
         System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()\n + sellCoffees()\n + restock(nCoffeeOunces, nSugarPackets, nCreams, nCups)\n + showMenu()");
     }
 
@@ -139,12 +143,12 @@ public class Cafe extends Building implements CafeRequirements {
      * 
      */
     public void showMenu() {
-        //for(int i = 1; i <= menu.size(); i++)               
-        //    System.out.println(getName());
-        //} 
         System.out.println("The menu includes: " + menu.toString());
     }
 
+    /** Go to a certain floor (PROHIBITED)
+     * @param floorNum the desired floor
+     */
     public void goToFloor(int floorNum) {
         if (this.activeFloor == -1) {
             throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
@@ -152,6 +156,9 @@ public class Cafe extends Building implements CafeRequirements {
         throw new RuntimeException("You are not permitted to move beyond this floor. ");
     }
 
+    /**
+     * Go up a floor
+     */
     public void goUp() {
         if (this.activeFloor == -1) {
             throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
@@ -159,6 +166,7 @@ public class Cafe extends Building implements CafeRequirements {
         throw new RuntimeException("You are not permitted to move beyond this floor. ");
     }
 
+    /** Go down a floor */
     public void goDown() {
         if (this.activeFloor == -1) {
             throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
